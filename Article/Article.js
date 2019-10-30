@@ -3,7 +3,7 @@
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
-    date: 'Nov 5th, 2018',
+    date: "Nov 5th, 2018",
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
         watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: "Javascript and You, ES6",
+    date: "May 7th, 2019",
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: "React vs Angular vs Vue",
+    date: "June 7th, 2019",
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: "Professional Software Development in 2019",
+    date: "Jan 1st, 2019",
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: `New Article`,
+    date: `Jan 1st, 2019`,
+    firstParagraph: ` thing`,
+    secondParagraph: `thing`,
+    thirdParagraph: `thing`
   }
 ];
 
@@ -101,11 +108,64 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.*/
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+const articlesDiv = document.querySelector(".articles");
 
-  Step 3: return the entire component.
+data.map(element2 => {
+  const e = articlesDiv.append(
+    createArticle(
+      element2.title,
+      element2.date,
+      element2.firstParagraph,
+      element2.secondParagraph,
+      element2.thirdParagraph
+    )
+  );
+  return e;
+});
+
+function createArticle(title, date, para1, para2, para3) {
+  const create = element => document.createElement(element);
+  const article = create("div");
+  const articleTitle = create("h2");
+  const articleDate = create("p");
+  const articlePara1 = create("p");
+  const articlePara2 = create("p");
+  const articlePara3 = create("p");
+  const buttonOpen = create("span");
+
+  article.append(
+    articleTitle,
+    articleDate,
+    articlePara1,
+    articlePara2,
+    articlePara3,
+    buttonOpen
+  );
+
+  article.classList.add("article");
+  articleDate.classList.add("date");
+  buttonOpen.classList.add("expandButton");
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articlePara1.textContent = para1;
+  articlePara2.textContent = para2;
+  articlePara3.textContent = para3;
+
+  article.addEventListener("click", () => {
+    article.classList.toggle("article-open");
+    buttonOpen.classList.toggle("expandButton");
+  });
+
+  return article;
+}
+/*Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.*/
+// article-Open.textContent = "\u25bc";
+// article-Close.textContent = "\u25b2";
+
+/*  Step 3: return the entire component.
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 

@@ -1,13 +1,61 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out"
 ];
+
+const page = document.querySelector("body");
+page.appendChild(createMenu(menuItems));
+function createMenu(array) {
+  const menu = document.createElement("div");
+  const menuList = document.createElement("ul");
+  menu.appendChild(menuList);
+
+  array.forEach(item => {
+    menuList.appendChild(document.createElement("li")).textContent = item;
+  });
+  menu.classList.add("menu");
+
+  const menuButton = document.querySelector(".menu-button");
+  menuButton.addEventListener("click", () => {
+    menu.classList.toggle("menu--open");
+  });
+
+  return menu;
+}
+
+// const menuButton = document.querySelector(".menu-button");
+
+// function createMenu() {
+//   const create = element => document.createElement(element);
+
+//   const articleMenu = create("div");
+//   const articleMenuItems = create("ul");
+//   const students = create("li");
+//   const faculty = create("li");
+//   const whatNew = create("li");
+//   const tech = create("li");
+//   const music = create("li");
+//   const logOut = create("li");
+
+//   articleMenu.append(articleMenuItems);
+
+//   articleMenuItems.append(students, faculty, whatNew, tech, music, logOut);
+
+//   articleMenu.classlist.add("menu");
+//   articleMenuItems.classlist.add("menuItems");
+
+//   articleMenuItems.textContent = menuItems;
+// }
+
+// articleMenu.addEventListener("click", () => {
+//   menuButton.classlist.toggle("menu-open");
+// });
 
 /* 
 
